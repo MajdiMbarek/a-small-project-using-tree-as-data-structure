@@ -8,7 +8,10 @@ typedef struct node
     struct node* left;
 }
 node;
+
 void trees(node* a);
+int search(node* tree, int number);
+
 int main(void)
 {
     node* tree = NULL;
@@ -43,6 +46,7 @@ int main(void)
     tree -> right = n;
 
     trees(tree);
+    search(tree,3);
 }
 
 
@@ -56,4 +60,29 @@ void trees(node* a)
     trees(a -> left);
     printf("%i\n", a -> number);
     trees(a -> right);
+}
+// if you want search in tree look at this :
+int search(node* tree, int number)
+{
+    if (tree == NULL)
+    {
+        return 1;
+    }
+    else if (number < tree->number)
+    {
+        // go left using recursion
+        printf("go left\n");
+        return search(tree->left,number);
+    }
+    else if (number > tree->number)
+    {
+        // go right using recursion
+        printf("go right\n");
+        return search(tree->right,number);
+    }
+    else
+    {
+        printf("found\n");
+        return 0;
+    }
 }
